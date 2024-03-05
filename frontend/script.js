@@ -21,17 +21,18 @@ function fetchReviews() {
          reviews.innerHTML = '' // Clear current reviews
          items.forEach(review => {
             reviews.innerHTML += `
-           <div class="review mt-3" data-city="${review.city.toLowerCase()}">
-               <h3>${review.city}</h3>
-               <p>Rating: ${review.rating}</p>
-               <p>${review.description}</p>
-               <button class = "btn btn-outline-primary" onclick="deleteReview('${review.city.toLowerCase()}')">Delete</button>
-               <button class = "btn btn-secondary" onclick="editReview('${review.city}')">Edit</button>
+           <div class="review mt-3 bg-light p-5 border border-warning rounded" data-city="${review.city.toLowerCase()}">
+               <h3 class = "display-6">${review.city}</h3>
+               <p class = "lead"><span class = "fw-bold"> Rating: </span> ${review.rating}</p>
+               <p class = "lead" ><span class = "fw-bold"> Description: </span>${review.description}</p>
+               <button class = "btn btn-outline-primary" onclick="deleteReview('${review.city.toLowerCase()}')">Delete <i class="fa-solid fa-trash"></i></button>
+               <button class = "btn btn-secondary" type = "button" data-bs-toggle="modal" data-bs-target="#updateModal">Edit</button>
            </div>
        `;
          })
       })
 }
+// onclick="editReview('${review.city.toLowerCase()}')
 
 // Add reviews
 function addReview(){
@@ -66,13 +67,43 @@ function deleteReview(city){
    })
 }
 
+// EDIT IN PROGRESS NOT FUNCTIONING
+let updateRating = document.getElementById('updateRating')
+let updateCity = document.getElementById('updateRating')
+let updateDesc = document.getElementById('updateDesc')
+
+function editReview(city){
+   const updatedTravel = {
+      city: updateCity.value,
+      rating: updateRating.value,
+      description: updateDesc.value 
+   }
+   fetch(`${api}travels/${city}`,{
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedTravel),
+   }).then(() => {
+      fetchReviews()
+   })
+}
+
+
+
 
 
 // Event listeners
 submitButton.addEventListener('click', addReview)
 
+updateButton.addEventListener('click', editReview) // Not working yet
+
+
+
 // Initial fetch of items
 document.addEventListener('DOMContentLoaded', fetchReviews);
+
+
 
 
 
