@@ -23,7 +23,7 @@ function fetchReviews() {
             reviews.innerHTML += `
            <div class="review mt-3 bg-light p-5 border border-warning rounded" data-city="${review.city.toLowerCase()}">
                <h3 class = "display-6">${review.city}</h3>
-               <p class = "lead"><span class = "fw-bold"> Rating: </span> ${review.rating}</p>
+               <p class = "lead"><span class = "fw-bold"> Rating: </span> ${review.rating} <i class="fa-solid fa-star"></i></p>
                <p class = "lead" ><span class = "fw-bold"> Description: </span>${review.description}</p>
                <button class = "btn btn-outline-primary" onclick="deleteReview('${review.city.toLowerCase()}')">Delete <i class="fa-solid fa-trash"></i></button>
                <button class = "btn btn-secondary" type = "button" data-bs-toggle="modal" data-bs-target="#updateModal">Edit</button>
