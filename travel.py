@@ -70,7 +70,7 @@ async def update_travel(*, city: str = Path(description="Name of city you would 
          if updateTravel.rating:
             review.rating = updateTravel.rating
          if updateTravel.description:
-            review.rating = updateTravel.rating
+            review.description = updateTravel.description
          
          return review
    
