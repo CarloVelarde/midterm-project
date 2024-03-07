@@ -69,16 +69,16 @@ function deleteReview(city){
 
 // EDIT IN PROGRESS NOT FUNCTIONING
 let updateRating = document.getElementById('updateRating')
-let updateCity = document.getElementById('updateRating')
+let updateCity = document.getElementById('updateCity')
 let updateDesc = document.getElementById('updateDesc')
 
-function editReview(city){
+function editReview(){
    const updatedTravel = {
       city: updateCity.value,
       rating: updateRating.value,
       description: updateDesc.value 
    }
-   fetch(`${api}travels/${city}`,{
+   fetch(`${api}travels/${updatedTravel.city}`,{
       method: 'PUT',
       headers: {
          'Content-Type': 'application/json',
@@ -96,7 +96,9 @@ function editReview(city){
 // Event listeners
 submitButton.addEventListener('click', addReview)
 
-updateButton.addEventListener('click', editReview) // Not working yet
+document.getElementById("updateButton").addEventListener('click', editReview) // Not working yet
+
+
 
 
 
